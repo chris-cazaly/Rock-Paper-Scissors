@@ -1,5 +1,6 @@
 * {
     font-family: sans-serif;
+    font-weight: 1000;
 }
 
 body {
@@ -17,8 +18,8 @@ button {
 }
 
 button:hover {
-    background-color: rgb(197, 230, 230);
-    border: solid teal;
+    background-color: white;
+    border: solid white;
     color: teal;
 }
 

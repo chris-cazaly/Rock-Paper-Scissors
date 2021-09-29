@@ -30,24 +30,22 @@ function play(choice) {
 
     let draw = (player == computer);
 
-    // console.log("Player:", player,"Computer:", computer);
-    // console.log("playerWins:", playerWins);
-    // console.log("");
-
-    let outcome = `Player: ${player}, Computer: ${computer}`
+    let outcome = `You: ${player}\n Computer: ${computer}`
     results.innerText = outcome;
 
+    // set winner text
+
     if (playerWins) {     
-        // console.log("Player wins!");
-        winner.innerText = "Player wins!";
+        winner.innerText = "You win!";
+        winner.style.color = "green";
     } 
     else if (draw) {
-        // console.log("It's a draw!")
         winner.innerText = "It's a draw!";
+        winner.style.color = "teal";
     } 
     else {
-        // console.log("Computer wins!")
         winner.innerText = "Computer wins!";
+        winner.style.color = "red";
     }
 
 }
