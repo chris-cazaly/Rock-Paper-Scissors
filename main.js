@@ -30,7 +30,7 @@ function play(choice) {
 
     let draw = (player == computer);
 
-    console.log("Player:", player,"Computer:", computer);
+    // console.log("Player:", player,"Computer:", computer);
     // console.log("playerWins:", playerWins);
     // console.log("");
 
@@ -38,15 +38,15 @@ function play(choice) {
     results.innerText = outcome;
 
     if (playerWins) {     
-        console.log("Player wins!");
+        // console.log("Player wins!");
         winner.innerText = "Player wins!";
     } 
     else if (draw) {
-        console.log("It's a draw!")
+        // console.log("It's a draw!")
         winner.innerText = "It's a draw!";
     } 
     else {
-        console.log("Computer wins!")
+        // console.log("Computer wins!")
         winner.innerText = "Computer wins!";
     }
 
