@@ -1,30 +1,115 @@
+/* --- Variables --- */
+
+:root {
+    --color-default: lightgray;
+    --color-win: rgb(168, 238, 168);
+    --color-lose: lightpink;
+    --color-draw: gray;
+}
+
 * {
     font-family: sans-serif;
     font-weight: 1000;
 }
 
 body {
-    background-color: rgb(197, 230, 230);
-    color: teal;
+
+    background-color: var(--color-default);
+    color: black;
 }
 
-button {
-    border: solid teal;
-    background-color: teal;
+.hidden {
+    display: none;
+}
+
+/* --- Buttons --- */
+
+.play-button {
+
+    background-color: black;
     color: white;
+    border: none;
+   
     width: 100px;
     height: 30px;
 
+    cursor: pointer;
 }
 
-button:hover {
+.play-button:hover {
     background-color: white;
-    border: solid white;
-    color: teal;
+    color: black;
+    outline: solid black;
 }
+
+.selected {
+    
+    background-color: white;
+    color: black;
+    outline: solid black;
+}
+
+.hovered {
+    background-color: white;
+    color: black;
+    outline: solid black;
+}
+
+#reset-button:hover{
+    background-color: white;
+    color: black;
+    outline: solid black;
+}
+
+#reset-button {
+    background-color: black;
+    color: white;
+    border: none;
+   
+    padding: 5px 10px;
+
+    cursor: pointer;
+}
+
+/* --- containers --- */
 
 .container {
+
    display: flex;
    flex-direction: column;
    align-items: center;
 }
+
+.results-container {
+    margin: 30px 0px;
+    border-radius: 20px;
+    overflow: hidden;
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 300px;
+    height: 150px;
+
+}
+
+.results-item {
+    width: 100px;
+    height: 100px;
+    /* border: solid red; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+}
+
+#game-text {
+    font-size: 3em;
+}
+

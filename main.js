@@ -1,52 +1,120 @@
-const results = document.getElementById("results");
-const winner = document.getElementById("winner");
+// array of images
+const gameImages = [
+    "images/rock.png",
+    "images/paper.png",
+    "images/scissors.png"
+];
 
-function play(choice) {
+// array of game options
+const options = [ 
+    "rock", 
+    "paper", 
+    "scissors" 
+];
 
-    // player = "rock", "paper", or "scissors"
-    let player = choice;
+// DOM SELECTORS
 
-    // computer = 0, 1, or 2
-    let computer = Math.floor(Math.random() * 3);
+const playerImage = document.querySelector("#player-image");
+const versusText = document.querySelector("#versus");
+const computerImage = document.querySelector("#computer-image");
 
-    let options = [ "rock", "paper", "scissors" ];
+const gameText = document.querySelector("#game-text");
+const body = document.body;
 
-    // convert computer from number to options[value]
+const rockButton = document.querySelector(".rock-button");
+const paperButton = document.querySelector(".paper-button");
+const scissorsButton = document.querySelector(".scissors-button");
+const resetButton = document.querySelector("#reset-button")
+const playButtons = [rockButton, paperButton, scissorsButton];
 
-    computer = options[computer];
+// VARIABLES
+// --------------------
+let canPlay = true;
+// --------------------
 
-    // compare player vs computer
+function play(event) {
 
-    // win conditions:
-    // winner   > loser
-    // rock     > scissors
-    // paper    > rock
-    // scissors > paper
+    const thisButton = event.target;
 
-    let playerWins =
-        (player == "rock" && computer == "scissors")
-    ||  (player == "paper" && computer == "rock")
-    ||  (player == "scissors" && computer == "paper");
+    if (canPlay){
 
-    let draw = (player == computer);
+        // - prevent repeat inputs -
+        canPlay = false;
 
-    let outcome = `You: ${player}\n Computer: ${computer}`
-    results.innerText = outcome;
+        // - make choices -
+        let playerChoice = thisButton.id;
+        let randomIndex = Math.floor(Math.random() * options.length);
+        let computerChoice = options[randomIndex];
 
-    // set winner text
+        // - display images -
 
-    if (playerWins) {     
-        winner.innerText = "You win!";
-        winner.style.color = "green";
-    } 
-    else if (draw) {
-        winner.innerText = "It's a draw!";
-        winner.style.color = "teal";
-    } 
-    else {
-        winner.innerText = "Computer wins!";
-        winner.style.color = "red";
+        playerImage.classList.remove("hidden");
+        versusText.classList.remove("hidden");
+        computerImage.classList.remove("hidden");
+
+        playerImage.src = gameImages[options.indexOf(playerChoice)];
+        computerImage.src = gameImages[options.indexOf(computerChoice)]
+
+        // - determine winner -
+        let result = compareChoices(playerChoice, computerChoice).toUpperCase();
+
+        // - set game text -
+        gameText.innerText = result;
+        
+        // - set background colour -
+        if (result == "WIN") {
+            body.style.backgroundColor = "var(--color-win)"
+        } else if (result == "DRAW") {
+            body.style.backgroundColor = "var(--color-draw)"
+        } else {
+            body.style.backgroundColor = "var(--color-lose)"
+        }
+        
+        // - show reset button -
+        resetButton.classList.remove("hidden");
+    }
+  
+}
+
+function reset(event) {
+    
+    // - enable canPlay -
+    canPlay = true;
+
+    // - hide reset button -
+    resetButton.classList.add("hidden");
+
+    // - hide results images -
+    playerImage.classList.add("hidden");
+    versusText.classList.add("hidden");
+    computerImage.classList.add("hidden");
+
+    // - reset background colour
+    body.style.backgroundColor = "var(--color-default)";
+
+    // - reset game text -
+    gameText.innerText = "PLAY";
+}
+
+function compareChoices(playerChoice, computerChoice) {
+    let result = "";
+
+    if ( 
+        playerChoice == "rock" && computerChoice == "scissors" ||
+        playerChoice == "paper" && computerChoice == "rock" ||
+        playerChoice == "scissors" && computerChoice == "paper"
+    ) {
+        result = "win";
+
+    } else if (playerChoice == computerChoice) {
+        result = "draw";
+
+    } else {
+        result = "lose";
     }
 
+    return result;
 }
+
+
 

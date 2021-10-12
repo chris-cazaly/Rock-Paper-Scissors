@@ -12,18 +12,29 @@
 
     <div class="container">
 
-        <h1>PLAY</h1>
+        <h1 id="game-text">PLAY</h1>
 
         <div class="buttons-container">
 
-            <button onclick="play('rock')">ROCK</button>
-            <button onclick="play('paper')">PAPER</button>
-            <button onclick="play('scissors')">SCISSORS</button>
+            <button class="play-button rock-button" id="rock" onclick="play(event)">ROCK</button>
+            <button class="play-button paper-button" id="paper" onclick="play(event)">PAPER</button>
+            <button class="play-button scissors-button" id="scissors" onclick="play(event)">SCISSORS</button>
 
         </div>
 
-        <p id="results"></p>
-        <p id="winner"></p>
+        <div class="results-container">
+            <span class="results-item">
+                <img class="hidden" id="player-image" src="" alt="">
+            </span>
+            <span class="results-item">
+                <h2 class="versus hidden" id="versus">vs</h2>
+            </span>
+            <span class="results-item">
+                <img class="hidden" id = "computer-image" src="" alt="">
+            </span>
+        </div>
+
+        <button class="hidden" id="reset-button" onclick="reset(event)">PLAY AGAIN</button>
 
     </div>
 
